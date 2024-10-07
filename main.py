@@ -5,18 +5,18 @@ import moviepy.audio.fx.all as afx
 
 if __name__ == "__main__":
     n = 4
-    # with open('temp/subjects.txt', 'w') as f:
-    #     for i in range(n):
-    #         f.write(input("Provide a limerick subject: ") + '\n')
+    with open('temp/subjects.txt', 'w') as f:
+        for i in range(n):
+            f.write(input("Provide a limerick subject: ") + '\n')
 
     print('Generating Limericks')
-    # os.system("conda run -n CoCr python scripts/LLM.py")
+    os.system("conda run -n CoCr python scripts/LLM.py")
 
     print('Generating Images')
-    # os.system(f"conda run -n Flux python scripts/FLUX.py -n {n}")
+    os.system(f"conda run -n Flux python scripts/FLUX.py -n {n}")
 
     print('Generating Sound')
-    # os.system(f"conda run -n TTS python scripts/AUDIO.py -n {n}")
+    os.system(f"conda run -n TTS python scripts/AUDIO.py -n {n}")
 
     print('Creating Video')
 
