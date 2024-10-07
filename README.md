@@ -8,7 +8,8 @@ This script has been tested on a laptop using an AMD Ryzen 7 6800H CPU and a NVI
 
 ## Setup
 - Install the CoCr and Flux conda environments from the included yaml files
-- download (ollama3.1)[https://github.com/ollama/ollama]
+  Example: `conda install --file CoCr.yml` 
+- download (ollama3.1)[https://github.com/ollama/ollama] and, from the shell, run the command `ollama run llama3` at least once. 
 - download (Flux-schnell) [https://huggingface.co/black-forest-labs/FLUX.1-schnell]
 
 ## Running
