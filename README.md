@@ -1,6 +1,8 @@
 # Medieval Limerick Generator
 By Emma Boom and Tom v. Gelooven 
 
+[[submission.mp4]]
+
 ## Hardware requirements
 This script has been tested on a laptop using an AMD Ryzen 7 6800H CPU and a NVIDIA GA104M GPU with 32GB of RAM.
 
