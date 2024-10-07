@@ -1,4 +1,5 @@
 import os
+import gc
 import moviepy.editor as mpy
 import moviepy.video.fx.all as vfx
 import moviepy.audio.fx.all as afx
@@ -11,12 +12,15 @@ if __name__ == "__main__":
 
     print('Generating Limericks')
     os.system("conda run -n CoCr python scripts/LLM.py")
+    gc.collect()
 
     print('Generating Images')
     os.system(f"conda run -n Flux python scripts/FLUX.py -n {n}")
+    gc.collect()
 
     print('Generating Sound')
     os.system(f"conda run -n TTS python scripts/AUDIO.py -n {n}")
+    gc.collect()
 
     print('Creating Video')
 
@@ -33,11 +37,11 @@ if __name__ == "__main__":
     
     background_clip = mpy.ImageClip('data/background.png')
     background_clip.fps=24
-    # bbackground_clip = background_clip.set_duration(8)
 
     for idx, limerick in enumerate(limericks):
         
-        limerick = limerick.split("\n", maxsplit=1) #split on title
+        # Split on title
+        limerick = limerick.split("\n", maxsplit=1) 
         
         # Video length depends on audio duration
         audio_clip = mpy.AudioFileClip(f"temp/audio_{idx}.wav")
@@ -49,6 +53,7 @@ if __name__ == "__main__":
 
         full_audio = mpy.CompositeAudioClip([audio_front_pad, audio_clip, audio_end_pad])
 
+        # Create clip for image
         picture_clip = mpy.ImageClip(f'temp/image_{idx}.png')
         picture_clip.fps=24
         picture_clip = picture_clip.set_position((0.585, 'center'), relative=True).set_duration(audio_duration).set_start(0, True).crossfadein(FRONT_PADDING).crossfadeout(END_PADDING)
@@ -76,6 +81,7 @@ if __name__ == "__main__":
             text_clip.set_position(('center', 'center'), relative=True)
         ], size=(960, 1080))
 
+        # Composite all clips
         video = mpy.CompositeVideoClip([
             background_clip,
             background_clip_2,
@@ -83,15 +89,16 @@ if __name__ == "__main__":
             text_video
         ], size=(1920, 1080))
 
-        
         video = video.set_duration(FRONT_PADDING + audio_duration + END_PADDING)
         video = video.set_audio(full_audio)
         video_list.append(video)
 
+    # Concatonate all clips
     if len(video_list) > 1: 
         final_video = mpy.concatenate_videoclips(video_list)
     else: final_video = video_list[0]
 
+    # Add background music
     background_audio = mpy.AudioFileClip(f'data/The-Medieval-Banquet.mp3')
     background_audio = (background_audio.set_end(final_video.end)
                         .volumex(0.15)
@@ -99,4 +106,4 @@ if __name__ == "__main__":
 
     final_audio = mpy.CompositeAudioClip([final_video.audio, background_audio])
     final_video = final_video.set_audio(final_audio)
-    final_video.write_videofile("test3.mp4")
+    final_video.write_videofile("Medieval Limericks.mp4")

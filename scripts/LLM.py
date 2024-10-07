@@ -10,6 +10,7 @@ from langchain_core.prompts.chat import (
     MessagesPlaceholder,
 )
 
+# Local LLM implementation
 class LLM:
     template_messages = [
         SystemMessage(content='''
@@ -39,9 +40,11 @@ class LLM:
 
 if __name__ == '__main__':
     
+    # Gather limerick subjects
     with open('temp/subjects.txt', 'r') as f:
         subjects = [text.strip('\n') for text in f.readlines()]
-    # print(subjects)
+    
+    # Create limericks
     llm = LLM()
     
     for idx, subject in enumerate(subjects):
