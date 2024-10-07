@@ -1,0 +1,23 @@
+name: Flux
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - pip:
+      - accelerate==0.33.0
+      - certifi==2024.7.4
+      - charset-normalizer==3.3.2
+      - flux==0.0.post24+gc00d7c6
+      - idna==3.7
+      - inquirerpy==0.3.4
+      - markupsafe==2.1.5
+      - pfzy==0.3.4
+      - pillow==10.4.0
+      - prompt-toolkit==3.0.47
+      - pyyaml==6.0.2
+      - regex==2024.7.24
+      - requests==2.32.3
+      - six==1.16.0
+      - tqdm==4.66.5
+      - urllib3==2.2.2
+      - wcwidth==0.2.13
