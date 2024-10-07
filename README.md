@@ -10,4 +10,4 @@ This script has been tested on a laptop using an AMD Ryzen 7 6800H CPU and a NVI
 - download (Flux-schnell) [https://huggingface.co/black-forest-labs/FLUX.1-schnell]
 
 ## Running
-Activate the `CoCr` conda environment and run `main.py` from the command line. You will be asked to provide four limerick subjects. 
+Activate the `CoCr` conda environment and run `main.py` from the command line. You will be asked to provide four limerick subjects. Runtime can vary between 5 and 10 minutes
