@@ -1,4 +1,5 @@
 # Medieval Limerick Generator
+A medieval-styled Limericks generator (including fitting imagery and audio narration) based on locally runable LLMs.   
 By Emma Boom and Tom v. Gelooven 
 
 [Example output](submission.mp4)
